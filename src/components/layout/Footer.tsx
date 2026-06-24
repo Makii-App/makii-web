@@ -9,11 +9,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
         <div className="col-span-1 md:col-span-1">
           <div className="mb-6">
-            <Image src="/images/logo.png" alt="Makii" width={48} height={48} className="h-10 w-auto" />
+            <Image src="/images/fullLogoMakiiLight.png" alt="Makii" width={100} height={100} className="h-10 w-auto" />
           </div>
-          <p className="text-sm opacity-60">© 2024 Makii. Entregado fresco a tu puerta.</p>
+          <p className="text-sm opacity-60">© 2026 Makii Inc. Todos los derechos reservados.</p>
         </div>
-        
+
         <div>
           <div className="flex flex-col gap-4 text-sm opacity-80">
             <Link href="#" className="hover:text-secondary transition-colors">Política de Privacidad</Link>
@@ -21,7 +21,7 @@ export default function Footer() {
             <Link href="/about" className="hover:text-secondary transition-colors">Nuestra Historia</Link>
           </div>
         </div>
-        
+
         <div>
           <div className="flex flex-col gap-4 text-sm opacity-80">
             <Link href="/partners" className="hover:text-secondary transition-colors">Sé Nuestro Aliado</Link>
