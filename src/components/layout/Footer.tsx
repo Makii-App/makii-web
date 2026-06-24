@@ -16,28 +16,28 @@ export default function Footer() {
         
         <div>
           <div className="flex flex-col gap-4 text-sm opacity-80">
-            <Link href="#" className="hover:text-primary transition-colors">Política de Privacidad</Link>
-            <Link href="/terms" className="hover:text-primary transition-colors">Términos de Servicio</Link>
-            <Link href="/about" className="hover:text-primary transition-colors">Nuestra Historia</Link>
+            <Link href="#" className="hover:text-secondary transition-colors">Política de Privacidad</Link>
+            <Link href="/terms" className="hover:text-secondary transition-colors">Términos de Servicio</Link>
+            <Link href="/about" className="hover:text-secondary transition-colors">Nuestra Historia</Link>
           </div>
         </div>
         
         <div>
           <div className="flex flex-col gap-4 text-sm opacity-80">
-            <Link href="/partners" className="hover:text-primary transition-colors">Sé Nuestro Aliado</Link>
-            <Link href="#" className="hover:text-primary transition-colors">Acceso Restaurantes</Link>
-            <Link href="#" className="hover:text-primary transition-colors">Beneficios de Entrega</Link>
+            <Link href="/partners" className="hover:text-secondary transition-colors">Sé Nuestro Aliado</Link>
+            <Link href="#" className="hover:text-secondary transition-colors">Acceso Restaurantes</Link>
+            <Link href="#" className="hover:text-secondary transition-colors">Beneficios de Entrega</Link>
           </div>
         </div>
 
         <div className="flex md:justify-end gap-4 h-fit">
-          <button className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors">
+          <button className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors">
             <Share2 size={20} />
           </button>
-          <button className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors">
+          <button className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors">
             <Mail size={20} />
           </button>
-          <button className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors">
+          <button className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-secondary/20 transition-colors">
             <ShoppingBag size={20} />
           </button>
         </div>

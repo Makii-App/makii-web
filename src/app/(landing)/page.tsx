@@ -25,25 +25,25 @@ const CATEGORIES = [
   { 
     name: "Hamburguesas", 
     icon: <UtensilsCrossed className="w-8 h-8" />, 
-    color: "bg-primary-container",
+    color: "bg-primary",
     img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop&q=60" 
   },
   { 
     name: "Pizza", 
     icon: <Pizza className="w-8 h-8" />, 
-    color: "bg-secondary-container",
+    color: "bg-tertiary",
     img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&auto=format&fit=crop&q=60"
   },
   { 
     name: "Ensaladas", 
     icon: <Salad className="w-8 h-8" />, 
-    color: "bg-tertiary-container",
+    color: "bg-secondary",
     img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&auto=format&fit=crop&q=60"
   },
   { 
     name: "Asados", 
     icon: <Flame className="w-8 h-8" />, 
-    color: "bg-primary",
+    color: "bg-primary-container",
     img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&auto=format&fit=crop&q=60"
   },
 ];
@@ -60,13 +60,13 @@ export default function Home() {
             className="md:w-1/2"
           >
             <h2 className="text-6xl md:text-7xl font-display font-extrabold leading-[0.95] mb-6">
-              Comida Fresca,<br />Entrega <span className="text-secondary-container">Rápida</span>
+              Comida Fresca,<br />Entrega <span className="text-primary">Rápida</span>
             </h2>
             <p className="text-lg text-on-surface-variant max-w-md mb-8">
               Disfruta de los sabores vibrantes de la alta cocina, llevados a tu puerta con una velocidad increíble. Antójate, pide y disfruta.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/restaurants" className="bg-secondary-container text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 ambient-shadow-secondary hover:translate-y-[-2px] transition-all">
+              <Link href="/restaurants" className="bg-primary text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 ambient-shadow-primary hover:translate-y-[-2px] transition-all">
                 Explorar Menú <ArrowRight size={20} />
               </Link>
               <button className="bg-surface-container px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-surface-container/80 transition-all">
@@ -148,17 +148,17 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 0.98 }}
-              className="lg:col-span-2 bg-secondary-container rounded-[2.5rem] p-10 relative overflow-hidden flex flex-col justify-end group cursor-pointer ambient-shadow-secondary"
+              className="lg:col-span-2 bg-secondary rounded-[2.5rem] p-10 relative overflow-hidden flex flex-col justify-end group cursor-pointer ambient-shadow-secondary"
             >
               <div className="absolute inset-0">
                 <Image src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&auto=format&fit=crop&q=60" alt="" fill className="object-cover" unoptimized />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               </div>
-              <div className="absolute top-8 right-8 bg-tertiary text-white px-4 py-2 rounded-full font-bold text-sm rotate-12 z-10">-20% OFF</div>
+              <div className="absolute top-8 right-8 bg-primary text-white px-4 py-2 rounded-full font-bold text-sm rotate-12 z-10">-20% OFF</div>
               <div className="relative z-10 max-w-md text-white">
                 <h4 className="text-5xl font-display font-bold mb-4">Banquete Familiar</h4>
                 <p className="mb-6 opacity-90">Perfecto para compartir. Obtén descuentos increíbles en combos diseñados para 4 o más personas.</p>
-                <button className="bg-white text-secondary-container px-6 py-3 rounded-full font-bold text-left">Reclamar Oferta</button>
+                <button className="bg-white text-primary px-6 py-3 rounded-full font-bold text-left">Reclamar Oferta</button>
               </div>
             </motion.div>
             
@@ -186,7 +186,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="flex-1 bg-tertiary-container rounded-[2.5rem] p-8 text-white relative overflow-hidden group text-left"
+                className="flex-1 bg-tertiary rounded-[2.5rem] p-8 text-white relative overflow-hidden group text-left"
               >
                 <div className="absolute inset-0">
                   <Image src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&auto=format&fit=crop&q=60" alt="" fill className="object-cover" unoptimized />
@@ -203,8 +203,8 @@ export default function Home() {
 
         {/* App Download Banner */}
         <section className="max-w-7xl mx-auto px-6 py-20">
-          <div className="bg-secondary-container/90 rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between">
-            <div className="md:w-1/2 z-10 text-white text-left">
+          <div className="bg-secondary/90 rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between">
+            <div className="md:w-1/2 z-10 text-on-secondary text-left">
               <h2 className="text-5xl font-display font-bold mb-6">Descarga la App.<br />Rápido y fácil.</h2>
               <p className="text-lg opacity-90 mb-10 max-w-sm">Rastrea tu pedido en tiempo real, desbloquea recompensas exclusivas y vuelve a ordenar tus favoritos con un solo toque.</p>
               <div className="flex flex-wrap gap-4">
@@ -262,8 +262,8 @@ export default function Home() {
         <section className="bg-inverse-surface py-32 text-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
-              <h2 className="text-5xl font-display font-bold text-primary-container mb-6">El Futuro de la Entrega</h2>
-              <p className="text-lg text-on-surface-variant max-w-2xl mx-auto">Estamos pionereando nuevas formas de llevar tu comida más rápido, más caliente y más seguro que nunca.</p>
+              <h2 className="text-5xl font-display font-bold text-secondary mb-6">El Futuro de la Entrega</h2>
+              <p className="text-lg text-inverse-on-surface/70 max-w-2xl mx-auto">Estamos pionereando nuevas formas de llevar tu comida más rápido, más caliente y más seguro que nunca.</p>
             </div>
             
             <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -280,7 +280,7 @@ export default function Home() {
                   whileHover={{ y: -5 }}
                   className="bg-white/5 border border-white/10 p-10 rounded-[3rem] text-center flex flex-col items-center backdrop-blur-sm"
                 >
-                  <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-8 text-primary-container">
+                  <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mb-8 text-secondary">
                     {feature.icon}
                   </div>
                   <h4 className="text-2xl font-display font-bold mb-4">{feature.title}</h4>
