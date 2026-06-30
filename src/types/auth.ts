@@ -3,12 +3,20 @@ export interface LoginDto {
   password: string;
 }
 
+export interface GoogleLoginDto {
+  idToken: string;
+  email: string;
+  name?: string;
+  picture?: string;
+}
+
 export interface AuthResponse {
   access_token: string;
   refresh_token: string;
   firstName: string;
   lastName: string;
   userType: string;
+  userId?: string;
 }
 
 export interface UserProfile {
@@ -32,29 +40,4 @@ export interface ApiErrorResponse {
   message: string;
   statusCode: number;
   errors?: string[];
-}
-
-import "next-auth"
-
-declare module "next-auth" {
-  interface Session {
-    accessToken: string;
-    refreshToken: string;
-    user: {
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-      role: string;
-      firstName: string;
-      lastName: string;
-    };
-  }
-
-  interface User {
-    accessToken: string;
-    refreshToken: string;
-    role: string;
-    firstName: string;
-    lastName: string;
-  }
 }

@@ -1,28 +1,24 @@
-'use client';
+"use client";
 
-import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { getToken } from "@/lib/auth";
 import AdminSidebar from "@/components/layout/AdminSidebar";
-import { Search, Bell } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const { status } = useSession();
+  const router = useRouter();
 
-  if (status === 'loading') {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-on-surface-variant">Cargando...</p>
-      </div>
-    );
-  }
-
-  if (status === 'unauthenticated') {
-    return null; // middleware will redirect
-  }
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      router.replace("/login/");
+    }
+  }, [router]);
 
   return (
-    <div className="flex h-screen bg-surface">
+    <div className="min-h-screen bg-background">
       <AdminSidebar />
-      <main className="flex-1 overflow-y-auto p-4 lg:p-8">{children}</main>
+      <main className="ml-64 min-h-screen p-8">{children}</main>
     </div>
   );
 }

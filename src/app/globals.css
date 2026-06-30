@@ -101,4 +101,19 @@
     pointer-events: none;
     z-index: 10;
   }
+  .ripped-paper-bottom {
+    position: relative;
+  }
+  .ripped-paper-bottom::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 24' preserveAspectRatio='none'%3E%3Cpath d='M0,24 L0,12 Q50,0 100,12 T200,12 T300,12 T400,12 T500,12 T600,12 T700,12 T800,12 T900,12 T1000,12 L1000,24 Z' fill='%233E2723'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    pointer-events: none;
+    z-index: 10;
+  }
 }

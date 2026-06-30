@@ -1,26 +1,20 @@
 "use client";
 
 import { motion } from "motion/react";
-import { 
-  SquarePlay, 
-  Timer, 
-  CheckCircle2, 
-  AlertCircle,
-  Hash,
-  MessageSquare
-} from "lucide-react";
+import { SquarePlay, Timer, CheckCircle2, AlertCircle, Hash, MessageSquare } from "lucide-react";
+import type { Order, OrderItem } from "@/hooks/useOrders";
 
-const ORDERS = {
+const FALLBACK_ORDERS = {
   pending: [
-    { id: "1042", table: "12", time: "14m", items: [{ qty: 2, name: "Classic Burger", notes: "No Onion" }, { qty: 1, name: "Truffle Fries" }] },
-    { id: "1043", table: "04", time: "4m", items: [{ qty: 1, name: "Caesar Salad", notes: "Dressing on side" }] },
+    { id: "1042", table: "12", status: "pending" as const, time: "14m", items: [{ qty: 2, name: "Classic Burger", notes: "No Onion" }, { qty: 1, name: "Truffle Fries" }] },
+    { id: "1043", table: "04", status: "pending" as const, time: "4m", items: [{ qty: 1, name: "Caesar Salad", notes: "Dressing on side" }] },
   ],
   preparation: [
-    { id: "1040", table: "08", time: "18m", items: [{ qty: 1, name: "Ribeye Steak", notes: "Medium Rare" }] }
+    { id: "1040", table: "08", status: "preparation" as const, time: "18m", items: [{ qty: 1, name: "Ribeye Steak", notes: "Medium Rare" }] },
   ],
   ready: [
-    { id: "1038", table: "Takeout", time: "25m", items: [{ qty: 3, name: "Margarita Pizza" }], urgent: true }
-  ]
+    { id: "1038", table: "Takeout", status: "ready" as const, time: "25m", items: [{ qty: 3, name: "Margarita Pizza" }], urgent: true },
+  ],
 };
 
 export default function AdminKitchen() {
@@ -40,71 +34,46 @@ export default function AdminKitchen() {
       </div>
 
       <div className="flex-grow flex gap-8 min-h-0">
-        {/* Column: PENDING */}
-        <div className="flex-1 flex flex-col gap-6 bg-surface-container/20 rounded-[2.5rem] p-6 border border-surface-container/50">
-          <div className="flex justify-between items-center px-2">
-            <h2 className="text-xl font-display font-bold flex items-center gap-2">
-              <AlertCircle size={20} className="text-secondary-container" /> Pendientes
-            </h2>
-            <span className="bg-secondary-container/10 text-secondary-container px-3 py-1 rounded-full text-xs font-bold">
-              {ORDERS.pending.length} Órdenes
-            </span>
-          </div>
-          <div className="flex-grow overflow-y-auto pr-2 space-y-6">
-            {ORDERS.pending.map((order) => (
-              <KitchenCard key={order.id} order={order} type="pending" />
-            ))}
-          </div>
-        </div>
-
-        {/* Column: PREPARATION */}
-        <div className="flex-1 flex flex-col gap-6 bg-surface-container/20 rounded-[2.5rem] p-6 border border-surface-container/50">
-          <div className="flex justify-between items-center px-2">
-            <h2 className="text-xl font-display font-bold flex items-center gap-2">
-              <SquarePlay size={20} className="text-primary" /> En Preparación
-            </h2>
-            <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">
-              {ORDERS.preparation.length} Preparando
-            </span>
-          </div>
-          <div className="flex-grow overflow-y-auto pr-2 space-y-6">
-            {ORDERS.preparation.map((order) => (
-              <KitchenCard key={order.id} order={order} type="preparation" />
-            ))}
-          </div>
-        </div>
-
-        {/* Column: READY */}
-        <div className="flex-1 flex flex-col gap-6 bg-surface-container/20 rounded-[2.5rem] p-6 border border-surface-container/50">
-          <div className="flex justify-between items-center px-2">
-            <h2 className="text-xl font-display font-bold flex items-center gap-2">
-              <CheckCircle2 size={20} className="text-secondary-container" /> Listos
-            </h2>
-            <span className="bg-secondary-container/10 text-secondary-container px-3 py-1 rounded-full text-xs font-bold">
-              {ORDERS.ready.length} Para Entrega
-            </span>
-          </div>
-          <div className="flex-grow overflow-y-auto pr-2 space-y-6">
-            {ORDERS.ready.map((order) => (
-              <KitchenCard key={order.id} order={order} type="ready" />
-            ))}
-          </div>
-        </div>
+        <KitchenColumn title="Pendientes" icon={<AlertCircle size={20} className="text-secondary-container" />} badgeClass="bg-secondary-container/10 text-secondary-container" orders={FALLBACK_ORDERS.pending} type="pending" />
+        <KitchenColumn title="En Preparación" icon={<SquarePlay size={20} className="text-primary" />} badgeClass="bg-primary/10 text-primary" orders={FALLBACK_ORDERS.preparation} type="preparation" />
+        <KitchenColumn title="Listos" icon={<CheckCircle2 size={20} className="text-secondary-container" />} badgeClass="bg-secondary-container/10 text-secondary-container" orders={FALLBACK_ORDERS.ready} type="ready" />
       </div>
     </div>
   );
 }
 
-function KitchenCard({ order, type }: { order: any, type: string }) {
+type ColumnType = "pending" | "preparation" | "ready";
+
+function KitchenColumn({ title, icon, badgeClass, orders, type }: { title: string; icon: React.ReactNode; badgeClass: string; orders: Order[]; type: ColumnType }) {
   return (
-    <motion.div 
+    <div className="flex-1 flex flex-col gap-6 bg-surface-container/20 rounded-[2.5rem] p-6 border border-surface-container/50">
+      <div className="flex justify-between items-center px-2">
+        <h2 className="text-xl font-display font-bold flex items-center gap-2">{icon} {title}</h2>
+        <span className={`${badgeClass} px-3 py-1 rounded-full text-xs font-bold`}>{orders.length} {type === "ready" ? "Para Entrega" : type === "preparation" ? "Preparando" : "Órdenes"}</span>
+      </div>
+      <div className="flex-grow overflow-y-auto pr-2 space-y-6">
+        {orders.map((order) => (
+          <KitchenCard key={order.id} order={order} type={type} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function KitchenCard({ order, type }: { order: Order; type: ColumnType }) {
+  return (
+    <motion.div
       layout
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       className={`bg-white p-6 rounded-3xl shadow-sm border-l-8 flex flex-col gap-6 relative transition-all hover:shadow-xl ${
-        order.urgent ? "border-error shadow-error/10" : 
-        type === "pending" ? "border-secondary-container shadow-secondary-container/10" : 
-        type === "preparation" ? "border-primary shadow-primary/10" : "border-secondary-container"
+        order.urgent
+          ? "border-error shadow-error/10"
+          : type === "pending"
+          ? "border-secondary-container shadow-secondary-container/10"
+          : type === "preparation"
+          ? "border-primary shadow-primary/10"
+          : "border-secondary-container"
       }`}
     >
       <div className="flex justify-between items-start border-b border-surface-container pb-4">
@@ -114,15 +83,13 @@ function KitchenCard({ order, type }: { order: any, type: string }) {
           </div>
           <h3 className="text-3xl font-display font-extrabold leading-none">Mesa {order.table}</h3>
         </div>
-        <div className={`px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-2 ${
-          order.urgent ? "bg-error text-white" : "bg-surface-container text-on-surface-variant"
-        }`}>
+        <div className={`px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-2 ${order.urgent ? "bg-error text-white" : "bg-surface-container text-on-surface-variant"}`}>
           <Timer size={16} /> {order.time} ago
         </div>
       </div>
 
       <ul className="flex flex-col gap-4">
-        {order.items.map((item: any, i: number) => (
+        {order.items.map((item: OrderItem, i: number) => (
           <li key={i} className="flex gap-4">
             <span className="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center font-bold text-sm text-primary shrink-0">
               {item.qty}x
@@ -139,12 +106,16 @@ function KitchenCard({ order, type }: { order: any, type: string }) {
         ))}
       </ul>
 
-      <button className={`w-full py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-3 transition-all ${
-        type === "pending" ? "bg-primary text-white shadow-emerald-ambient" :
-        type === "preparation" ? "bg-secondary-container text-white shadow-lg" : "bg-surface-container text-on-surface-variant opacity-60"
-      }`}>
-        {type === "pending" ? "Iniciar Preparación" : 
-         type === "preparation" ? "Marcar como Listo" : "Completado"}
+      <button
+        className={`w-full py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-3 transition-all ${
+          type === "pending"
+            ? "bg-primary text-white shadow-emerald-ambient"
+            : type === "preparation"
+            ? "bg-secondary-container text-white shadow-lg"
+            : "bg-surface-container text-on-surface-variant opacity-60"
+        }`}
+      >
+        {type === "pending" ? "Iniciar Preparación" : type === "preparation" ? "Marcar como Listo" : "Completado"}
       </button>
     </motion.div>
   );

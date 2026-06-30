@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 import QueryProvider from "@/providers/QueryProvider";
 
 const bricolage = Bricolage_Grotesque({
@@ -37,9 +36,7 @@ export default function RootLayout({
       <body
         className={`${bricolage.variable} ${inter.variable} font-sans bg-background text-on-surface antialiased selection:bg-secondary/30`}
       >
-        <SessionProvider>
-          <QueryProvider>{children}</QueryProvider>
-        </SessionProvider>
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

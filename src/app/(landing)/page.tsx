@@ -1,17 +1,21 @@
 import HeroSection from "./sections/HeroSection";
-import CategoriesSection from "./sections/CategoriesSection";
-import PromotionsSection from "./sections/PromotionsSection";
+import FeaturesSection from "./sections/FeaturesSection";
+import RolesSection from "./sections/RolesSection";
+import SpacesSection from "./sections/SpacesSection";
+import EventsSection from "./sections/EventsSection";
 import AppDownloadSection from "./sections/AppDownloadSection";
-import FutureSection from "./sections/FutureSection";
+import DeliveryTeaserSection from "./sections/DeliveryTeaserSection";
 
 export default function Home() {
   return (
     <div className="overflow-hidden">
       <HeroSection />
-      <CategoriesSection />
-      <PromotionsSection />
+      <FeaturesSection />
+      <RolesSection />
+      <SpacesSection />
+      <EventsSection />
       <AppDownloadSection />
-      <FutureSection />
+      <DeliveryTeaserSection />
     </div>
   );
 }

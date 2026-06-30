@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import AppMockupTables from "@/components/ui/AppMockupTables";
-import AppMockupMenu from "@/components/ui/AppMockupMenu";
+import AppMockupReservations from "@/components/ui/AppMockupReservations";
+import AppMockupEvents from "@/components/ui/AppMockupEvents";
 import StoreBadge from "./StoreBadge";
 
 export default function AppDownloadSection() {
@@ -11,13 +11,13 @@ export default function AppDownloadSection() {
       <div className="bg-secondary/90 rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 z-10 text-on-secondary text-left">
           <h2 className="text-5xl font-display font-bold mb-6">
-            Descarga la App.
+            Tu restaurante
             <br />
-            Rápido y fácil.
+            en el bolsillo.
           </h2>
           <p className="text-lg opacity-90 mb-10 max-w-sm">
-            Rastrea tu pedido en tiempo real, desbloquea recompensas exclusivas
-            y vuelve a ordenar tus favoritos con un solo toque.
+            La app móvil y web de Makii sincronizan comandas, pedidos, caja y
+            reservas con tu equipo en tiempo real.
           </p>
           <div className="flex flex-wrap gap-4">
             <StoreBadge
@@ -76,7 +76,7 @@ export default function AppDownloadSection() {
               transition={{ duration: 0.8 }}
               className="w-56 h-[480px] bg-surface-container rounded-[2.5rem] border-4 border-surface-container-highest shadow-2xl overflow-hidden"
             >
-              <AppMockupTables />
+              <AppMockupReservations />
             </motion.div>
             <motion.div
               initial={{ rotate: 5, y: 100 }}
@@ -85,7 +85,7 @@ export default function AppDownloadSection() {
               transition={{ duration: 0.8, delay: 0.15 }}
               className="w-56 h-[480px] bg-surface-container rounded-[2.5rem] border-4 border-surface-container-highest shadow-2xl overflow-hidden -rotate-6 translate-y-4"
             >
-              <AppMockupMenu />
+              <AppMockupEvents />
             </motion.div>
           </div>
         </div>

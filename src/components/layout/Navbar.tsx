@@ -36,8 +36,8 @@ export default function Navbar() {
         </div>
         <div className="flex items-center gap-4">
           <Link href="/login" className="hidden sm:block font-semibold text-sm hover:text-primary transition-colors">Iniciar Sesión</Link>
-          <Link href="/restaurants" className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm ambient-shadow-primary hover:scale-105 active:scale-95 transition-all">
-            Ordenar Ahora
+          <Link href="/contact" className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm ambient-shadow-primary hover:scale-105 active:scale-95 transition-all">
+            Solicitar Demo
           </Link>
         </div>
       </div>
