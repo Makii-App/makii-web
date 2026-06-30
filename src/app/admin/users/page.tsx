@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Plus, BadgeCheck, Bike, Mail, Phone, Edit, MoreVertical } from "lucide-react";
 
@@ -57,8 +58,8 @@ export default function AdminUsers() {
               className="bg-white p-6 rounded-[2.5rem] border border-surface-container shadow-sm hover:shadow-xl transition-all flex flex-col sm:flex-row items-center gap-6 group"
             >
               <div className="relative">
-                 <div className="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden group-hover:scale-105 transition-transform">
-                   <img src={member.img} className="w-full h-full object-cover" alt={member.name} />
+                 <div className="relative w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden group-hover:scale-105 transition-transform">
+                   <Image src={member.img} fill sizes="96px" className="object-cover" alt={member.name} />
                  </div>
                  <div className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-full border-4 border-white shadow-md ${
                    member.status === 'active' ? 'bg-primary' : 'bg-surface-container'

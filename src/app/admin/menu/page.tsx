@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Plus, Search, Edit3, Trash2, Eye, MoreVertical } from "lucide-react";
 
@@ -49,8 +50,8 @@ export default function AdminMenu() {
             }`}
           >
             <div className="flex items-center gap-6">
-              <div className="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform z-10">
-                <img src={prod.img} className="w-full h-full object-cover" alt={prod.name} />
+              <div className="relative w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden shrink-0 group-hover:scale-105 transition-transform z-10">
+                <Image src={prod.img} fill sizes="96px" className="object-cover" alt={prod.name} />
               </div>
               <div>
                 <h3 className="text-2xl font-display font-bold mb-1">{prod.name}</h3>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { useParams } from 'next/navigation';
 import Link from "next/link";
@@ -25,10 +26,13 @@ export default function RestaurantDetail() {
   return (
     <div className="min-h-screen bg-background">
       <header className="relative h-[400px] w-full overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1200" 
-          alt="Restaurant Cover" 
-          className="w-full h-full object-cover"
+        <Image
+          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1200"
+          alt="Restaurant Cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 text-white text-left">
@@ -66,7 +70,7 @@ export default function RestaurantDetail() {
             <div className="grid md:grid-cols-2 gap-6">
               {MENU.entradas.map(item => (
                 <div key={item.id} className="bg-white p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col group border border-surface-container">
-                  {item.img && <img src={item.img} className="w-full h-40 object-cover rounded-2xl mb-4" alt={item.name} />}
+                  {item.img && <Image src={item.img} width={400} height={160} className="w-full h-40 object-cover rounded-2xl mb-4" alt={item.name} />}
                   <div className="flex justify-between mb-2">
                     <h3 className="text-xl font-bold">{item.name}</h3>
                     <span className="text-primary font-bold">${item.price.toFixed(2)}</span>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Plus, Search, MapPin, ArrowRight, ExternalLink } from "lucide-react";
 
@@ -55,8 +56,8 @@ export default function AdminRestaurants() {
                 <tr key={res.id} className="hover:bg-surface-container/20 transition-colors group">
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-white border border-surface-container p-1 shadow-sm shrink-0 overflow-hidden group-hover:scale-110 transition-transform">
-                        <img src={res.logo} className="w-full h-full object-cover rounded-xl" alt={res.name} />
+                      <div className="relative w-12 h-12 rounded-2xl bg-white border border-surface-container p-1 shadow-sm shrink-0 overflow-hidden group-hover:scale-110 transition-transform">
+                        <Image src={res.logo} fill sizes="48px" className="object-cover rounded-xl" alt={res.name} />
                       </div>
                       <span className="font-bold text-lg">{res.name}</span>
                     </div>

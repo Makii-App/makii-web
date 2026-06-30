@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Play, CheckCircle, Zap } from "lucide-react";
 
@@ -48,25 +49,27 @@ export default function AboutUs() {
               <div className="absolute inset-0 border-[3px] border-dashed border-primary/20 rounded-full animate-[spin_60s_linear_infinite]" />
               <div className="absolute inset-4 border-[2px] border-transparent border-t-secondary-container border-r-secondary-container rounded-full rotate-45 opacity-60" />
               
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 className="absolute inset-12 bg-surface-container rounded-full overflow-hidden shadow-emerald-ambient border-4 border-white relative z-20"
               >
-                <img 
+                <Image
                   src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800"
                   alt="Fine Dining"
-                  className="w-full h-full object-cover scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 450px"
+                  className="object-cover scale-110"
                 />
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 3 }}
                 className="absolute -top-8 right-16 w-24 h-24 z-30"
               >
-                <div className="bg-white p-2 rounded-full shadow-lg">
-                  <img src="https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?w=100" className="w-full h-full object-cover rounded-full" alt="Herb" />
+                <div className="relative bg-white p-2 rounded-full shadow-lg w-full h-full">
+                  <Image src="https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?w=100" alt="Herb" fill sizes="96px" className="object-cover rounded-full" />
                 </div>
               </motion.div>
 
@@ -90,15 +93,19 @@ export default function AboutUs() {
           <div className="relative order-2 lg:order-1">
             <div className="bg-surface-container/30 rounded-[2rem] p-8 lg:p-12 border border-surface-container/50">
               <div className="grid grid-cols-2 gap-4">
-                <img 
-                    src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=400" 
-                    className="rounded-xl w-full h-48 object-cover shadow-sm" 
-                    alt="Chef with tablet" 
+                <Image
+                    src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=400"
+                    width={400}
+                    height={192}
+                    className="rounded-xl w-full h-48 object-cover shadow-sm"
+                    alt="Chef with tablet"
                 />
-                <img 
-                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400" 
-                    className="rounded-xl w-full h-48 object-cover shadow-sm mt-8" 
-                    alt="Dashboard metrics" 
+                <Image
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400"
+                    width={400}
+                    height={192}
+                    className="rounded-xl w-full h-48 object-cover shadow-sm mt-8"
+                    alt="Dashboard metrics"
                 />
               </div>
             </div>

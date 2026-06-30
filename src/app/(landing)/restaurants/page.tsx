@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Search, Star, Clock, Bike, ShoppingCart, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -147,7 +148,7 @@ export default function Restaurants() {
                 className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col text-left"
               >
                 <div className="relative h-48">
-                  <img src={res.image} alt={res.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <Image src={res.image} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-110 transition-transform duration-500" alt={res.name} />
                   {res.promo && (
                     <div className="absolute top-4 left-4 bg-secondary-container text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
                       {res.promo}

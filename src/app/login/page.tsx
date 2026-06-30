@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Utensils, Loader2 } from "lucide-react";
@@ -109,9 +110,11 @@ export default function Login() {
         {/* Right Side: Imagery */}
         <div className="hidden lg:block relative bg-surface-container shadow-inner">
           <div className="absolute inset-0 z-10 bg-gradient-to-tr from-primary/10 to-transparent" />
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200"
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            priority
+            className="object-cover"
             alt="Amigos comiendo pizza"
           />
 
