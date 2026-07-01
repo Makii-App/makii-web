@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { setToken, setRefreshToken, clearAuth } from "@/lib/auth";
@@ -65,15 +66,22 @@ export function useLogoutMutation() {
 
 export function useProfileQuery() {
   const setUser = useAuthStore((s) => s.setUser);
-
-  return useQuery({
+  const query = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
       const data = await api.get<UserProfile>("/auth/profile");
-      setUser(data);
       return data;
     },
     staleTime: 1000 * 60 * 5,
     retry: 1,
+    enabled: typeof window !== "undefined",
   });
+
+  useEffect(() => {
+    if (query.data) {
+      setUser(query.data);
+    }
+  }, [query.data, setUser]);
+
+  return query;
 }

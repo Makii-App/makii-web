@@ -4,12 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { Utensils, Loader2 } from "lucide-react";
+import { Layers, Loader2, Eye, EyeOff } from "lucide-react";
 import { useLoginMutation } from "@/hooks/useAuth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const loginMutation = useLoginMutation();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -30,7 +31,7 @@ export default function Login() {
           >
             <div className="mb-12">
               <Link href="/" className="inline-block mb-8">
-                <h1 className="text-4xl font-display font-extrabold text-primary tracking-tighter">Makii</h1>
+                <Image src="/images/logo.png" alt="Makii" width={100} height={100} className="h-6 w-auto" />
               </Link>
               <h2 className="text-3xl font-display font-bold text-on-surface mb-2">Bienvenido de nuevo</h2>
               <p className="text-on-surface-variant">Inicia sesión para pedir tus platos favoritos.</p>
@@ -53,19 +54,31 @@ export default function Login() {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-on-surface mb-2" htmlFor="password">Contraseña</label>
-                <input
-                  className="w-full bg-surface-container border-transparent focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-4 text-on-surface placeholder-outline-variant transition-all outline-none"
-                  id="password"
-                  name="password"
-                  placeholder="••••••••"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <div className="relative">
+                  <input
+                    className="w-full bg-surface-container border-transparent focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-4 pr-12 text-on-surface placeholder-outline-variant transition-all outline-none"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    aria-label="Contraseña"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                    aria-pressed={showPassword}
+                    className="absolute inset-y-0 right-0 flex items-center justify-center px-4 text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus-visible:text-primary cursor-pointer"
+                  >
+                    {showPassword ? <EyeOff size={20} aria-hidden="true" /> : <Eye size={20} aria-hidden="true" />}
+                  </button>
+                </div>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center">
                   <input className="h-5 w-5 rounded border-surface-container text-primary focus:ring-primary cursor-pointer" id="terms" name="terms" type="checkbox" />
                   <label className="ml-3 text-sm text-on-surface-variant cursor-pointer" htmlFor="terms">Acepto los términos</label>
@@ -121,11 +134,11 @@ export default function Login() {
           <div className="absolute bottom-12 left-12 z-20 bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl max-w-[320px] border border-white/50 text-left">
             <div className="flex items-center gap-4 mb-3">
               <div className="bg-primary/10 p-3 rounded-full text-primary">
-                <Utensils size={20} />
+                <Layers size={20} />
               </div>
-              <h4 className="font-bold text-on-surface uppercase text-xs tracking-widest">Ingredientes Frescos</h4>
+              <h4 className="font-bold text-on-surface uppercase text-xs tracking-widest">Simplifica tu operación, crece con Makii</h4>
             </div>
-            <p className="text-sm text-on-surface-variant leading-relaxed italic">&ldquo;La mejor pizza que he probado en mucho tiempo, la rapidez es increíble.&rdquo;</p>
+            <p className="text-sm text-on-surface-variant leading-relaxed italic">&ldquo;Centraliza pedidos, mesas y caja en un solo lugar. Más control, menos caos.&rdquo;</p>
           </div>
         </div>
       </div>
